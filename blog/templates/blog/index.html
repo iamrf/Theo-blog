@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% block title %} Blog Index page {% endblock %}
+{% block content %}
+
+{% for post in posts %}
+    {% if post.post_status %}
+    <p>
+    <h1><a href="{{ post.get_absolute_url }}">{{ post.post_title }}</a></h1>
+    <h4><span>{{ post.post_date }}</span> | by <span>{{ post.post_author }}</span></h4>
+    {{ post.post_content|linebreaks }}
+    </p>
+    {% endif %}
+{% empty %}
+
+<h1>There is not a Blog post found!</h1>
+
+{% endfor %}
+
+{% endblock %}

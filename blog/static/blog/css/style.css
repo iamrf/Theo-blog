@@ -1,0 +1,94 @@
+
+@viewport{
+    zoom: 1.0;
+    width: device-width;
+}
+    
+@font-face {
+    font-family: 'byekan';
+    src: url('../fonts/YekanWeb-Regular.woff');
+}
+
+*{
+    outline: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    direction: rtl;
+    font-family: 'byekan','ubuntu', Tahoma, 'Segoe UI', Verdana, sans-serif;
+    background: #EBEBEB;
+    transition: .5s;
+    overflow-x: hidden;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5rem;
+    height: 100%;
+}
+
+section {
+    margin: 0;
+    padding: 0;
+    background: #222222;
+}
+
+section:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.full-view {
+    height: 100vh;  /* it means 100% viewport height */
+    height: 100%;   /* code on JQuery */
+    width : 100%;
+}
+
+/* for js Full cover image */
+.img-full {
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.img-fit {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.flex-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
