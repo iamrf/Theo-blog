@@ -21,14 +21,24 @@ html {
 body{
     direction: rtl;
     font-family: 'byekan','ubuntu', Tahoma, 'Segoe UI', Verdana, sans-serif;
-    background: #EBEBEB;
+    background: rgb(250, 250, 250);
     transition: .5s;
     overflow-x: hidden;
     font-size: 1rem;
     margin: 0;
     padding: 0;
-    line-height: 1.5rem;
+    line-height: 2rem;
     height: 100%;
+    box-sizing: border-box;
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover{
+    top: 1rem;
 }
 
 section {
@@ -91,4 +101,68 @@ section:after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+aside{
+    min-height: 100vh;
+
+}
+
+#main-section{
+    background: none;
+}
+
+.article-header{
+    background-color: #005047;
+    color: #fff;
+    padding: 1rem .3rem;
+    margin: 0 -.95rem;
+
+}
+
+.article-top-meta{
+    background-color: rgb(236, 236, 236);
+    padding: .3rem .5rem;
+    margin: 0 -.9rem;
+    color: #005047;
+}
+
+.top-meta-left{
+    display: block;
+    margin-top: .5rem;
+}
+
+.article-body{
+    padding: .3rem;
+}
+
+.article-body a{
+    color: #005047;
+}
+
+.article-footer, .article-footer a{
+    color: #005047;
+    margin-bottom: 1rem;
+}
+
+.continue-btn{
+    display: block;
+    background-color: #005047;
+    color: #fff !important;
+    padding: .5rem 1rem;
+    transition: .3s;
+    box-sizing: border-box;
+
+}
+
+.continue-btn:hover{
+    background-color: #fff;
+    color: #005047 !important;
+    transition: .3s;
+}
+
+.tags-header{
+    background: inherit;
+    color: #005047;
+    padding: 1.5rem;
 }

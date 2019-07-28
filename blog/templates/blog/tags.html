@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% block title %} برچسب ها {% endblock %}
+{% block content %}
+
+        
+    <section id="main-section">
+        <header class="article-header">
+            <h3>برچسب ها</h3>
+        </header>
+        <article class="article-body">
+            <p>
+                {% for tag in tags %}
+                    <a href="{% url 'blog:tag_single' tag.slug %}"><i class="fa fa-hashtag" aria-hidden="true"></i>&nbsp;{{ tag.name }}</a><br>
+                {% endfor %}
+            </p>
+        </article>
+        <br>
+        <footer class="article-footer">
+        </footer>
+    </section>
+
+
+{% endblock %}

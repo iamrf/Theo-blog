@@ -7,6 +7,7 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}">
         <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -14,6 +15,21 @@
         {% block script %}{% endblock %}
     </head>
     <body>
-        {% block content %}{% endblock %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4" style="background-color: #005047">
+                    <aside>
+                        <a href="{% url 'blog:index' %}"><i class="fa fa-home fa-4x"></i></a>
+                        <a href="{% url 'blog:categories' %}"><i class="fa fa-bookmark-o fa-4x"></i></a>
+                        <a href="{% url 'blog:tags' %}"><i class="fa fa-hashtag fa-4x"></i></a>
+                        {% block aside %}{% endblock %}
+                    </aside>
+                </div>
+                <div class="col-md-8">
+                    {% block content %}{% endblock %}
+
+                </div>
+            </div>
+        </div>
     </body>
 </html>

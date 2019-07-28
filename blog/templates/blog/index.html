@@ -1,18 +1,46 @@
 {% extends 'blog/base.html' %}
 {% block title %} Blog Index page {% endblock %}
+
+{% block aside %}
+
+{% endblock %}
+
+
+
 {% block content %}
 
 {% for post in posts %}
     {% if post.post_status %}
-    <p>
-    <h1><a href="{{ post.get_absolute_url }}">{{ post.post_title }}</a></h1>
-    <h4><span>{{ post.post_date }}</span> | by <span>{{ post.post_author }}</span></h4>
-    {{ post.post_content|linebreaks }}
-    </p>
+    <section id="main-section">
+        <header class="article-header">
+            <h3><i class="fa fa-chevron-down" aria-hidden="true"></i>&nbsp;<a href="{{ post.get_absolute_url }}">{{ post.post_title }}</a></h3>
+        </header>
+        <div class="article-top-meta">
+            <h5><span class="float-left top-meta-left"><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.post_date }}</span></h5>
+            <h5><span><i class="fa fa-user" aria-hidden="true"></i>  {{ post.post_author }}</span></h5>            
+        </div>
+        <article class="article-body">
+            <p>{{ post.post_content|linebreaks|truncatewords:350 }}</p>
+        </article>
+        <br>
+        <footer class="article-footer">
+            <span class="float-left">
+                <a href="{{ post.get_absolute_url }}" class="continue-btn">ادامه مطلب ...</a>
+            </span>
+            {% for cat in post.post_category.all %}
+                <a href="{% url 'blog:cat_single' cat.slug %}"><i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; {{ cat.name }}</a>&nbsp;
+            {% endfor %}
+            <br>
+            {% for tag in post.post_tag.all %}
+                <a href="{% url 'blog:tag_single' tag.slug %}"><i class="fa fa-hashtag" aria-hidden="true"></i>&nbsp;{{ tag.name }}</a>&nbsp;
+            {% endfor %}
+        </footer>
+    </section>
+
     {% endif %}
 {% empty %}
 
-<h1>There is not a Blog post found!</h1>
+<h1>There not a Blog post found!</h1>
 
 {% endfor %}
 

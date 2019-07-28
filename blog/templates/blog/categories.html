@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% block title %} لیست موضوعات {% endblock %}
+{% block content %}
+
+        
+    <section id="main-section">
+        <header class="article-header">
+            <h3>دسته بندی موضوعی</h3>
+        </header>
+        <article class="article-body">
+            <p>
+                {% for cat in categories %}
+                    <a href="{% url 'blog:cat_single' cat.slug %}"><i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; {{ cat.name }}</a><br>
+                {% endfor %}
+            </p>
+        </article>
+        <br>
+        <footer class="article-footer">
+        </footer>
+    </section>
+
+
+{% endblock %}
