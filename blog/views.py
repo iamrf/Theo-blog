@@ -11,32 +11,65 @@ from django.http import HttpResponse
 def index(request):
     posts = BlogPost.objects.all().order_by('-post_date')
     tags = BlogTag.objects.all()
+    cats = BlogCategory.objects.all().order_by('slug')
     return render(request, 'blog/index.html', {
         'posts': posts,
         'tags': tags,
+        'cats': cats,
         })
 
 
 def post_single(request, slg):
     post = get_object_or_404(BlogPost, post_slug=slg)
-    return render(request, 'blog/post.html', {'post': post})
+    tags = BlogTag.objects.all()
+    cats = BlogCategory.objects.all().order_by('slug')
+    return render(request, 'blog/post.html', {
+        'post': post,
+        'tags': tags,
+        'cats': cats,
+        })
 
 
 def tags(request):
     tags = BlogTag.objects.all().order_by('slug')
-    return render(request, 'blog/tags.html', {'tags': tags})
+    cats = BlogCategory.objects.all().order_by('slug')
+    return render(request, 'blog/tags.html', {
+        'tags': tags,
+        'cats': cats,
+        })
 
 
 def tag_single(request, slg):
-        tag = get_object_or_404(BlogTag, slug=slg)
-        return render(request, 'blog/tag_single.html', {'tag': tag})
+    tag = get_object_or_404(BlogTag, slug=slg)
+    posts = tag.blogpost_set.all().order_by('-post_date')
+    tags = BlogTag.objects.all()
+    cats = BlogCategory.objects.all().order_by('slug')
+    return render(request, 'blog/tag_single.html', {
+        'tag': tag,
+        'posts': posts,
+        'tags': tags,
+        'cats': cats,
+        })
 
 
 def categories(request):
-        categories = BlogCategory.objects.all().order_by('slug')
-        return render(request, 'blog/categories.html', {'categories': categories})
+    categories = BlogCategory.objects.all().order_by('slug')
+    tags = BlogTag.objects.all()
+    return render(request, 'blog/categories.html', {
+        'categories': categories,
+        'tags': tags,
+        'cats': categories,
+    })
 
 
 def cat_single(request, slg):
-        cat = get_object_or_404(BlogCategory, slug=slg)
-        return render(request, 'blog/cat_single.html', {'cat': cat})
+    cat = get_object_or_404(BlogCategory, slug=slg)
+    posts = cat.blogpost_set.all().order_by('-post_date')
+    tags = BlogTag.objects.all()
+    cats = BlogCategory.objects.all().order_by('slug')
+    return render(request, 'blog/cat_single.html', {
+        'cat': cat,
+        'posts': posts,
+        'tags': tags,
+        'cats': cats,
+        })

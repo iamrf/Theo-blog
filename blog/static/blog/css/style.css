@@ -9,6 +9,24 @@
     src: url('../fonts/YekanWeb-Regular.woff');
 }
 
+@media (min-width: 768px) {
+    .desktop-only {
+        display:block !important;
+    }
+    .mobile-only {
+        display: none !important;
+    }
+}
+ 
+@media (max-width: 768px) {
+    .desktop-only {
+        display:none !important;
+    }
+    .mobile-only {
+        display:flex !important;
+    }
+}
+
 *{
     outline: 0;
     box-sizing: border-box;
@@ -96,6 +114,11 @@ section:after {
     float: right;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0 .9rem;
+}
+
 .flex-center{
     display: flex;
     flex-direction: column;
@@ -105,7 +128,7 @@ section:after {
 
 aside{
     min-height: 100vh;
-
+    color: #fff;
 }
 
 #main-section{
@@ -165,4 +188,15 @@ aside{
     background: inherit;
     color: #005047;
     padding: 1.5rem;
+}
+
+.aside_box{
+    display: block;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-bottom: .1rem solid rgba(255, 255, 255, 0.3);
+}
+
+.aside_box h4{
+    margin-bottom: 1.5rem;
 }

@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md bg-light navbar-light mobile-only">
+  <!-- Brand -->
+  <a class="navbar-brand" href="{% url 'blog:index' %}"><i class="fa fa-home"></i> صفحه نخست </a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">   درباره     </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    دسته بندی مطالب 
+            </a>
+            <div class="dropdown-menu">
+                {% for cat in cats %}
+            <a class="dropdown-item" href="{{ cat.get_absolute_url }}">   <i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; {{ cat.name }}    </a>
+                {% endfor %}
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    برچسب ها
+            </a>
+            <div class="dropdown-menu">
+                {% for tag in tags %}
+                <a class="dropdown-item" href="{{ tag.get_absolute_url }}">   <i class="fa fa-hashtag" aria-hidden="true"></i> &nbsp; {{ tag.name }}    </a>
+                {% endfor %}
+            </div>
+        </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,20 @@
+<div class="aside_box">
+    <a href="{% url 'blog:index' %}"><i class="fa fa-home"></i> &nbsp; صفحه نخست</a>
+</div>
+
+<div class="aside_box">
+    <h4>    دسته بندی مطالب     </h4>
+    <ul>
+        {% for cat in cats %}
+            <li><a href="{{ cat.get_absolute_url }}"><i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; {{ cat.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="aside_box">
+        <h4>    برچسب ها     </h4>
+            {% for tag in tags %}
+                <a href="{{ tag.get_absolute_url }}"><i class="fa fa-hashtag" aria-hidden="true"></i> {{ tag.name }}</a>
+                &nbsp;
+            {% endfor %}
+</div>
