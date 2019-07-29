@@ -60,7 +60,9 @@ def shamsiDate(gyear, gmonth, gday):
             sd = gmod
             sm = int(gd/30) + 10
 
-    result = '%s/%s/%s' % (sy, sm, sd)
+    full = '%s/%s/%s' % (sy, sm, sd)
+    result = {'full': full, 'year': sy, 'month': sm, 'day': sd}
+
     return result
 
 

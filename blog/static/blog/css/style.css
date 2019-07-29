@@ -53,10 +53,12 @@ body{
 a{
     color: #fff;
     text-decoration: none;
+    transition: .3s;
 }
 
 a:hover{
-    top: 1rem;
+    color: #002722;
+    transition: .3s;
 }
 
 section {
@@ -167,6 +169,11 @@ aside{
     margin-bottom: 1rem;
 }
 
+.article-footer a:hover{
+    color: #002722;
+    transition: .3s;
+}
+
 .continue-btn{
     display: block;
     background-color: #005047;
@@ -242,6 +249,11 @@ aside{
     padding: .3rem;
 }
 
+.newsletter-inp:active{
+    background-color: #002722;
+    color: #fff;
+}
+
 .newsletter-btn{
     width: 18%;
     padding: .3rem;
@@ -251,7 +263,7 @@ aside{
 }
 
 .newsletter-btn:hover{
-    background-color: #005047;
+    background-color: #002722;
     cursor: pointer;
     color: #fff;
     transition: .3s;
