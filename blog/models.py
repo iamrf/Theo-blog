@@ -49,3 +49,11 @@ class BlogPost(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog:post_single', args=[self.post_slug])
+
+
+class NewsLetter(models.Model):
+    email = models.EmailField(unique=True, blank=False, null=False)
+    date = models.DateTimeField(auto_now=timezone.now())
+
+    def __str__(self):
+        return self.email

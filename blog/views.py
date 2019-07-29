@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from .models import BlogPost, BlogTag, BlogCategory
+from .models import BlogPost, BlogTag, BlogCategory, NewsLetter
 from django.utils import timezone
 import datetime
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 
@@ -73,3 +73,13 @@ def cat_single(request, slg):
         'tags': tags,
         'cats': cats,
         })
+
+
+def newsletter(request):
+        nl = NewsLetter()
+        try:
+            nl.email = request.POST['newsletter']
+            nl.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        except:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
