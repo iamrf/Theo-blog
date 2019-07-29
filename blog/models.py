@@ -3,6 +3,7 @@ from django.utils import timezone
 import datetime
 from slugify import slugify
 from django.urls import reverse
+from blog.jalali_date_conv import shamsiDate
 
 # Create your models here.
 
@@ -49,6 +50,10 @@ class BlogPost(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog:post_single', args=[self.post_slug])
+
+    def jalali_date(self):
+        gyear = self.post_date
+        return shamsiDate(gyear.year, gyear.month, gyear.day)
 
 
 class NewsLetter(models.Model):

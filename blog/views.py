@@ -4,7 +4,7 @@ from .models import BlogPost, BlogTag, BlogCategory, NewsLetter
 from django.utils import timezone
 import datetime
 from django.http import HttpResponse, HttpResponseRedirect
-
+from blog.jalali_date_conv import shamsiDate
 # Create your views here.
 
 

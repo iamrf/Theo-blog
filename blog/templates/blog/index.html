@@ -16,7 +16,12 @@
                 <h3><i class="fa fa-chevron-down" aria-hidden="true"></i>&nbsp;<a href="{{ post.get_absolute_url }}">{{ post.post_title }}</a></h3>
             </header>
             <div class="article-top-meta">
-                <h5><span class="float-left top-meta-left"><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.post_date }}</span></h5>
+                <h5>
+                    <span class="float-left top-meta-left ltr">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> {{ post.jalali_date }} &nbsp;&nbsp; 
+                    <i class="fa fa-clock-o" aria-hidden="true"></i> {{ post.post_date.time }}
+                    </span>
+                </h5>
                 <h5><span><i class="fa fa-user" aria-hidden="true"></i>  {{ post.post_author }}</span></h5>            
             </div>
             <article class="article-body">
