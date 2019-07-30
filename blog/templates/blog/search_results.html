@@ -1,13 +1,13 @@
 {% extends 'blog/base.html' %}
-{% block title %} مطالب با موضوع {{ cat.name }} {% endblock %}
+{% block title %} نتایج جستجوی {{ inp }} {% endblock %}
 {% block content %}
 
-        
+
         <header class="tags-header">
-            <h1> مطالب با موضوع &nbsp;<i class="fa fa-bookmark-o" aria-hidden="true"></i>&nbsp;{{ cat.name }}</h1>
+            <h1>یافته های <i class="fa fa-search" aria-hidden="true"></i> &nbsp; {{ inp }}</h1>
         </header>
 
-        {% for post in posts %}
+        {% for post in search %}
         
         <section id="main-section">
             <header class="article-header">
@@ -41,7 +41,7 @@
         </section>
         {% empty %}
         <header class="article-header">
-            <h3>هیچ مطلبی با موضوع {{ cat.name }} یافت نشد.</h3>
+            <h3>هیچ مطلبی یافت نشد.</h3>
         </header>
         {% endfor %}
 

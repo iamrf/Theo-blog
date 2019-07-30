@@ -10,5 +10,6 @@ urlpatterns = [
     path('categories/<slug:slg>/', views.cat_single, name='cat_single'),
     path('categories/', views.categories, name='categories'),
     path('post/<slug:slg>/', views.post_single, name='post_single'),
-    path('newsletter/', views.newsletter, name='newsletter')
+    path('newsletter/', views.newsletter, name='newsletter'),
+    path('search/', views.search, name="search"),
 ]

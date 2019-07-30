@@ -40,7 +40,7 @@ class BlogPost(models.Model):
     post_date = models.DateTimeField(default=timezone.now)
     post_created_date = models.DateTimeField(auto_now_add=timezone.now)
     post_last_modified_date = models.DateTimeField(auto_now=timezone.now)
-    post_status = models.BooleanField(default=True, verbose_name='Publish?')
+    post_status = models.BooleanField(default=True, verbose_name='Publish')
 
     class meta:
         ordering = ('-post_last_modified_date',)
@@ -62,3 +62,13 @@ class NewsLetter(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class PostComments(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    content = models.TextField()
+    date = models.DateTimeField(auto_now=timezone.now())
+
+    def __str__(self):
+        return self.name

@@ -5,6 +5,7 @@ from django.utils import timezone
 import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from blog.jalali_date_conv import shamsiDate
+from django.db.models import Q
 # Create your views here.
 
 
@@ -83,3 +84,19 @@ def newsletter(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         except:
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def search(request):
+        inp = request.POST['search']
+        s = BlogPost.objects.filter(
+                Q(post_content__icontains=inp) | Q(post_title__icontains=inp)
+                ).order_by('-post_date')
+
+        tags = BlogTag.objects.all()
+        cats = BlogCategory.objects.all().order_by('slug')
+        return render(request, 'blog/search_results.html', {
+                'search': s,
+                'inp': inp,
+                'tags': tags,
+                'cats': cats,
+        })

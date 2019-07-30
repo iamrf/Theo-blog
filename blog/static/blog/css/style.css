@@ -247,11 +247,7 @@ aside{
     border: none;
     width: 80%;
     padding: .3rem;
-}
-
-.newsletter-inp:active{
-    background-color: #002722;
-    color: #fff;
+    transition: .3s;
 }
 
 .newsletter-btn{
@@ -275,4 +271,31 @@ aside{
     height: 100%;
     overflow: hidden;
     border-radius: 50%;
+}
+
+.search-inp{
+    border: none;
+    width: 18%;
+    padding: .3rem;
+    transition: .3s;
+}
+
+.search-inp:focus{
+    width: 80%;
+    transition: .3s;
+}
+
+.search-btn{
+    width: 18%;
+    padding: .3rem;
+    border: 0;
+    color: #005047;
+    transition: .3s;
+}
+
+.search-btn:hover{
+    background-color: #002722;
+    cursor: pointer;
+    color: #fff;
+    transition: .3s;
 }

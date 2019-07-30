@@ -1,6 +1,7 @@
 <div class="aside_box">
-    <a href="{% url 'blog:index' %}"><i class="fa fa-home"></i> &nbsp; صفحه نخست</a>
-</div>
+        <a href="{% url 'blog:index' %}"><i class="fa fa-home"></i> &nbsp; صفحه نخست</a><br>
+        <a href="#about"><i class="fa fa-vcard"></i> &nbsp;     درباره     </a><br>
+    </div>
 
 <div class="aside_box">
     <h4>    دسته بندی مطالب     </h4>
@@ -17,4 +18,12 @@
                 <a href="{{ tag.get_absolute_url }}"><i class="fa fa-hashtag" aria-hidden="true"></i> {{ tag.name }}</a>
                 &nbsp;
             {% endfor %}
+</div>
+
+<div class="aside_box">
+    <form method="POST" action="{% url 'blog:search' %}">
+        {% csrf_token %}
+        <input type="search" name="search" placeholder="جستجو" class="search-inp">
+        <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+    </form>
 </div>
