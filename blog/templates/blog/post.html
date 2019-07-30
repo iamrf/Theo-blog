@@ -31,6 +31,70 @@
             {% endfor %}
 
         </footer>
+        
+        <div class="container comments">
+            <div class="comments-form">
+                <h3><i class="fa fa-comment"></i> &nbsp;    نظر دهید    </h3><hr>
+                <form action="{% url 'blog:comment' post.post_slug %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="name">نام</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" name="name" id="name" class="comments-text" placeholder="نام شما" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="email"> ایمیل</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="email" name="email" id="email" class="ltr comments-text" placeholder="Emai Address" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="content"> متن نظر </label>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea rows="8" cols="50" name="content" id="content" class="comments-text" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            <button class="comments-btn" type="submit">ارسال</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            {% if comments %}
+            <div class="comments-list">
+                <h3><i class="fa fa-comments"></i> &nbsp;    نظرات   </h3>
+                {% for cmnt in comments %}
+                    {% if cmnt.status %}
+                        <p>
+                        <hr><br>
+                        <span class="float-left ltr">
+                                {{ cmnt.jalali_date.full }} - {{ cmnt.date.time }}<br>
+                        </span>
+                        <h4>{{ cmnt.name }}</h4>
+                        
+                        {{ cmnt.content|linebreaks }}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+
+
     </section>
 
     {% endif %}

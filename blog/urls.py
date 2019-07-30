@@ -12,4 +12,5 @@ urlpatterns = [
     path('post/<slug:slg>/', views.post_single, name='post_single'),
     path('newsletter/', views.newsletter, name='newsletter'),
     path('search/', views.search, name="search"),
+    path('comment/<slug:slg>/', views.comment, name='comment'),
 ]

@@ -64,11 +64,17 @@ class NewsLetter(models.Model):
         return self.email
 
 
-class PostComments(models.Model):
+class PostComment(models.Model):
+    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     email = models.EmailField()
-    content = models.TextField()
-    date = models.DateTimeField(auto_now=timezone.now())
+    content = models.TextField(blank=False, null=False)
+    date = models.DateTimeField(auto_now_add=timezone.now())
+    status = models.BooleanField(default=True, verbose_name='Publish')
 
     def __str__(self):
         return self.name
+
+    def jalali_date(self):
+        gyear = self.date
+        return shamsiDate(gyear.year, gyear.month, gyear.day)

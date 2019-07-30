@@ -299,3 +299,47 @@ aside{
     color: #fff;
     transition: .3s;
 }
+
+.comments-form{
+    color: #005047;
+    border: .1rem solid #00504733;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 4rem 0 2rem;
+}
+
+.comments-text{
+    width: 100%;
+    margin-bottom: .5rem;
+}
+
+.comments-btn{
+    width: 100%;
+    padding: .3rem;
+    border: 0;
+    color: #005047;
+    transition: .3s;
+}
+
+.comments-btn:hover{
+    background-color: #005047;
+    cursor: pointer;
+    color: #fff;
+    transition: .3s;
+}
+
+.comments-list{
+    color: #005047;
+    border: .1rem solid #00504733;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 0 0 2rem;
+}
+
+.comments-list h3, .comments-form h3{
+    text-align: center
+}
+
+.comments-list p{
+    padding: .5rem 0;
+}

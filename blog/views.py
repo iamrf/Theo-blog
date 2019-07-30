@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from .models import BlogPost, BlogTag, BlogCategory, NewsLetter
+from .models import BlogPost, BlogTag, BlogCategory, NewsLetter, PostComment
 from django.utils import timezone
 import datetime
 from django.http import HttpResponse, HttpResponseRedirect
@@ -22,10 +22,12 @@ def index(request):
 
 def post_single(request, slg):
     post = get_object_or_404(BlogPost, post_slug=slg)
+    comments = PostComment.objects.filter(post__post_slug=slg).order_by('-date')
     tags = BlogTag.objects.all()
     cats = BlogCategory.objects.all().order_by('slug')
     return render(request, 'blog/post.html', {
         'post': post,
+        'comments': comments,
         'tags': tags,
         'cats': cats,
         })
@@ -77,26 +79,41 @@ def cat_single(request, slg):
 
 
 def newsletter(request):
-        nl = NewsLetter()
-        try:
-            nl.email = request.POST['newsletter']
-            nl.save()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-        except:
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    nl = NewsLetter()
+    try:
+        nl.email = request.POST['newsletter']
+        nl.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    except:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 def search(request):
-        inp = request.POST['search']
-        s = BlogPost.objects.filter(
-                Q(post_content__icontains=inp) | Q(post_title__icontains=inp)
-                ).order_by('-post_date')
+    inp = request.POST['search']
+    search = BlogPost.objects.filter(
+        Q(post_content__icontains=inp) | Q(post_title__icontains=inp)
+        ).order_by('-post_date')
 
-        tags = BlogTag.objects.all()
-        cats = BlogCategory.objects.all().order_by('slug')
-        return render(request, 'blog/search_results.html', {
-                'search': s,
-                'inp': inp,
-                'tags': tags,
-                'cats': cats,
-        })
+    tags = BlogTag.objects.all()
+    cats = BlogCategory.objects.all().order_by('slug')
+    return render(request, 'blog/search_results.html', {
+        'search': search,
+        'inp': inp,
+        'tags': tags,
+        'cats': cats,
+    })
+
+
+def comment(request, slg):
+    post = get_object_or_404(BlogPost, post_slug=slg)
+    cmnt = PostComment()
+    try:
+        cmnt.post = post
+        cmnt.name = request.POST['name']
+        cmnt.email = request.POST['email']
+        cmnt.content = request.POST['content']
+    except:
+        return HttpResponseRedirect(reverse('blog:post_single', args=[slg]))
+    else:
+        cmnt.save()
+        return HttpResponseRedirect(reverse('blog:post_single', args=[slg]))
