@@ -33,6 +33,15 @@
                 {% endfor %}
             </div>
         </li>
+
+        <li class="nav-item">
+                <form method="POST" action="{% url 'blog:search' %}">
+                    {% csrf_token %}
+                    <input type="search" name="search" placeholder="جستجو" class="search-inp">
+                    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                </form>
+        </li>
+
     </ul>
   </div>
 </nav>
