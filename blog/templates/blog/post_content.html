@@ -8,7 +8,7 @@
             <i class="fa fa-clock-o" aria-hidden="true"></i> {{ post.post_date.time }}
         </span>
     </h5>
-    <h5><span><i class="fa fa-user" aria-hidden="true"></i>  {{ post.post_author }}</span></h5>            
+    <h5><span><i class="fa fa-user" aria-hidden="true"></i>&nbsp; {{ post.post_author.first_name }} {{ post.post_author.last_name }}</span></h5>            
 </div>
 <article class="article-body">
     <p>{{ post.post_content|linebreaks }}</p>
