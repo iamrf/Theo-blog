@@ -10,11 +10,13 @@ from django.db.models import Q
 
 
 def index(request):
-    posts = BlogPost.objects.all().order_by('-post_date')
+    posts = BlogPost.objects.all().order_by('-post_date')[:7]
+    fixed_posts = BlogPost.objects.filter(post_fixed=True).order_by('-post_date')[:3]
     tags = BlogTag.objects.all()
     cats = BlogCategory.objects.all().order_by('slug')
     return render(request, 'blog/index.html', {
         'posts': posts,
+        'fixed_posts': fixed_posts,
         'tags': tags,
         'cats': cats,
         })

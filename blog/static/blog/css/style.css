@@ -275,18 +275,25 @@ aside{
 
 .search-inp{
     border: none;
-    width: 18%;
+    width: 83%;
     padding: .3rem;
     transition: .3s;
 }
 
-.search-inp:focus{
-    width: 80%;
+.search-inp-nav{
+    border: none;
+    width: 30%;
+    padding: .3rem;
+    transition: .3s;
+}
+
+.search-inp-nav:focus{
+    width: 68%;
     transition: .3s;
 }
 
 .search-btn{
-    width: 18%;
+    width: 15%;
     padding: .3rem;
     border: 0;
     color: #005047;
@@ -342,4 +349,9 @@ aside{
 
 .comments-list p{
     padding: .5rem 0;
+}
+
+.copyrights{
+    direction: ltr;
+    text-align: center;
 }

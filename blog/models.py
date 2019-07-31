@@ -41,6 +41,7 @@ class BlogPost(models.Model):
     post_created_date = models.DateTimeField(auto_now_add=timezone.now)
     post_last_modified_date = models.DateTimeField(auto_now=timezone.now)
     post_status = models.BooleanField(default=True, verbose_name='Publish')
+    post_fixed = models.BooleanField(default=False, verbose_name='Use as fixed post')
 
     class meta:
         ordering = ('-post_last_modified_date',)
