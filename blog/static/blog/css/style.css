@@ -144,6 +144,10 @@ aside{
     margin: 0 -.95rem;
 }
 
+.article-header h3{
+line-height: 200% !important;
+}
+
 .article-top-meta{
     background-color: rgb(236, 236, 236);
     padding: .3rem .5rem;
@@ -354,4 +358,11 @@ aside{
 .copyrights{
     direction: ltr;
     text-align: center;
+}
+
+.pagination-bar{
+    display: block;
+    background-color: #005047;
+    padding: 2rem 0 0;
+    min-width: 100%;
 }

@@ -6,20 +6,36 @@ import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from blog.jalali_date_conv import shamsiDate
 from django.db.models import Q
+from django.core.paginator import Paginator
 # Create your views here.
 
 
 def index(request):
-    posts = BlogPost.objects.all().order_by('-post_date')[:7]
+    available_posts = BlogPost.objects.all().filter(post_fixed=False).order_by('-post_date')
     fixed_posts = BlogPost.objects.filter(post_fixed=True).order_by('-post_date')[:3]
     tags = BlogTag.objects.all()
     cats = BlogCategory.objects.all().order_by('slug')
+
+    # Show 25 contacts per page
+    paginator = Paginator(available_posts, 2)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
     return render(request, 'blog/index.html', {
         'posts': posts,
         'fixed_posts': fixed_posts,
         'tags': tags,
         'cats': cats,
-        })
+    })
+
+
+def paginator(request):
+    posts = BlogPost.objects.all().filter(post_fixed=False).order_by('-post_date')
+    paginator = Paginator(posts, 2)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    contacts = paginator.get_page(page)
+    return render(request, 'blog/paginator.html', {'contacts': contacts})
 
 
 def post_single(request, slg):

@@ -1,0 +1,24 @@
+<div class="pagination-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="pagination justify-content-center">
+                    {% if posts.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo; صفحه اول</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">صفحه قبل</a></li>
+                    {% endif %}
+
+                    <span class="current">
+                        <li class="page-item active"><a class="page-link" href="#" >صفحه {{ posts.number }} از {{ posts.paginator.num_pages }}</a></li>
+                    </span>
+
+                    {% if posts.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">صفحه بعد</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">صفحه آخر &raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
