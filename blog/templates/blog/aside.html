@@ -1,6 +1,7 @@
 <div class="aside_box">
     <a href="{% url 'blog:index' %}"><i class="fa fa-home"></i> &nbsp; صفحه نخست</a><br>
-    <a href="#about"><i class="fa fa-vcard"></i> &nbsp;     درباره     </a><br>
+    <a href="#about"><i class="fa fa-user"></i> &nbsp;     درباره     </a><br>
+    <a href="#contact"><i class="fa fa-vcard"></i> &nbsp;     ارتباط با من     </a><br>
 
     <br><form method="POST" action="{% url 'blog:search' %}">
         {% csrf_token %}
@@ -13,16 +14,21 @@
     <h4>    دسته بندی مطالب     </h4><hr>
     <ul>
         {% for cat in cats %}
-            <li><a href="{{ cat.get_absolute_url }}"><i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; {{ cat.name }}</a></li>
+            <li>
+                <a href="{{ cat.get_absolute_url }}"><i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; {{ cat.name }}</a>
+                &nbsp; <span class="badge badge-light">{{ cat.blogpost_set.count }}</span>
+            </li>
         {% endfor %}
     </ul>
 </div>
 
 <div class="aside_box">
-        <h4>    برچسب ها     </h4><hr>
-            {% for tag in tags %}
-                <a href="{{ tag.get_absolute_url }}"><i class="fa fa-hashtag" aria-hidden="true"></i> {{ tag.name }}</a>
-                &nbsp;
-            {% endfor %}
+    <h4>    برچسب ها     </h4><hr>
+    {% for tag in tags %}
+        <a href="{{ tag.get_absolute_url }}"
+        data-toggle="tooltip" title="{{ tag.blogpost_set.count }} پست"
+        ><i class="fa fa-hashtag" aria-hidden="true"></i> {{ tag.name }}</a>
+        &nbsp;
+    {% endfor %}
 </div>
 

@@ -1,3 +1,4 @@
+//  ***   set slider size equal to viewport   ***
 $(document).ready(function() {
     function setHeight() {
       windowHeight = $(window).innerHeight() -56;
@@ -10,6 +11,9 @@ $(document).ready(function() {
       setHeight();
     });
   });
-  //  ***   set slider size equal to viewport   ***
-  
 
+
+//    *** BS4 tooltip
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});

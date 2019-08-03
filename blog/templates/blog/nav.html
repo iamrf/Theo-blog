@@ -19,13 +19,19 @@
         <li class="nav-item">
             <a class="nav-link" href="#about">   درباره     </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#contact">   ارتباط با من     </a>
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     دسته بندی مطالب 
             </a>
             <div class="dropdown-menu">
                 {% for cat in cats %}
-            <a class="dropdown-item" href="{{ cat.get_absolute_url }}">   <i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; {{ cat.name }}    </a>
+                  <a class="dropdown-item" href="{{ cat.get_absolute_url }}">
+                    <i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; {{ cat.name }}
+                    &nbsp; <span class="badge badge-info">{{ cat.blogpost_set.count }}</span>
+                  </a>
                 {% endfor %}
             </div>
         </li>
@@ -35,7 +41,10 @@
             </a>
             <div class="dropdown-menu">
                 {% for tag in tags %}
-                <a class="dropdown-item" href="{{ tag.get_absolute_url }}">   <i class="fa fa-hashtag" aria-hidden="true"></i> &nbsp; {{ tag.name }}    </a>
+                  <a class="dropdown-item" href="{{ cat.get_absolute_url }}">
+                    <i class="fa fa-tag" aria-hidden="true"></i> &nbsp; {{ tag.name }}
+                    &nbsp; <span class="badge badge-info">{{ tag.blogpost_set.count }}</span>
+                  </a>
                 {% endfor %}
             </div>
         </li>
