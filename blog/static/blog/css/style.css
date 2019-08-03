@@ -206,6 +206,7 @@ line-height: 200% !important;
     padding: 1rem;
     font-size: 1.2rem;
     border-bottom: .1rem solid rgba(255, 255, 255, 0.3);
+    line-height: 2;
 }
 
 .aside_box h4{
