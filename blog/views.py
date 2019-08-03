@@ -16,8 +16,8 @@ def index(request):
     tags = BlogTag.objects.all()
     cats = BlogCategory.objects.all().order_by('slug')
 
-    # Show 25 contacts per page
-    paginator = Paginator(available_posts, 2)
+    # Show 7 posts per page
+    paginator = Paginator(available_posts, 7)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
 
@@ -27,15 +27,6 @@ def index(request):
         'tags': tags,
         'cats': cats,
     })
-
-
-def paginator(request):
-    posts = BlogPost.objects.all().filter(post_fixed=False).order_by('-post_date')
-    paginator = Paginator(posts, 2)  # Show 25 contacts per page
-
-    page = request.GET.get('page')
-    contacts = paginator.get_page(page)
-    return render(request, 'blog/paginator.html', {'contacts': contacts})
 
 
 def post_single(request, slg):
@@ -62,7 +53,12 @@ def tags(request):
 
 def tag_single(request, slg):
     tag = get_object_or_404(BlogTag, slug=slg)
-    posts = tag.blogpost_set.all().order_by('-post_date')
+    tag_posts = tag.blogpost_set.all().order_by('-post_date')
+    # Show 10 tags per page
+    paginator = Paginator(tag_posts, 10)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    # aside tags and cats
     tags = BlogTag.objects.all()
     cats = BlogCategory.objects.all().order_by('slug')
     return render(request, 'blog/tag_single.html', {
@@ -85,7 +81,12 @@ def categories(request):
 
 def cat_single(request, slg):
     cat = get_object_or_404(BlogCategory, slug=slg)
-    posts = cat.blogpost_set.all().order_by('-post_date')
+    cat_posts = cat.blogpost_set.all().order_by('-post_date')
+    # Show 10 cats per page
+    paginator = Paginator(cat_posts, 10)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    # aside tags and cats
     tags = BlogTag.objects.all()
     cats = BlogCategory.objects.all().order_by('slug')
     return render(request, 'blog/cat_single.html', {
